@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerClass : MonoBehaviour {
+<<<<<<< HEAD
 	
 	public enum Country {Japan, USA, China, Russia};
 	public Country country;
@@ -10,11 +11,21 @@ public class PlayerClass : MonoBehaviour {
 	
 	SpriteRenderer[] playerSprites; 
 	
+=======
+
+    public PlayerData Data;
+
+>>>>>>> origin/master
 	// Use this for initialization
 	void Start () {
 		
 		colorPicker ();
 	}
+
+    public void LoadPlayerData(PlayerData data)
+    {
+        Data = data;
+    }
 	
 	// Update is called once per frame
 	void Update () {
