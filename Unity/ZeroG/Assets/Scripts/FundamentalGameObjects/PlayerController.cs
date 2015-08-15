@@ -4,15 +4,16 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public GameObject PlayerArrow;
-	float xInput;
-	float yInput;
+	public float xInput;
+	public float yInput;
 	Rigidbody2D playerRigidBody;
 	float impulseRate;
 	PlayerClass myInfo;
 
 	// Conditional Checks
-	bool canJump;
+	public bool canJump;
 	bool didJump;
+	public bool grounded;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 
 		canJump = true;
 		didJump = false;
+		grounded = false;
 		impulseRate = 20f;
 	}
 	
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 
 		didJump = false;
 		canJump = false;
+		grounded = false;
 
 		playerRigidBody.AddForce (new Vector2(xInput * impulseRate, yInput * impulseRate), ForceMode2D.Impulse); 
 
@@ -106,16 +109,32 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.tag == "Environment") {
 			canJump = true;
+			grounded = true;
 		}
 
 	}
 
-	void OnCollisionEnter2D(Collision2D other){
+	void OnCollisionExit2D(Collision2D other){
 		
-		if (other.gameObject.tag == "Player") {
-			playerRigidBody.AddForce (new Vector2(xInput * -1 *impulseRate, yInput * -1 * impulseRate), ForceMode2D.Impulse);
+		if (other.gameObject.tag == "Environment") {
+			canJump = false;
+			grounded = false;
 		}
 		
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+
+		PlayerController otherInfo;
+		otherInfo = other.gameObject.GetComponent<PlayerController> ();
+
+		if (other.gameObject.tag == "Player" && grounded) {
+			playerRigidBody.AddForce (new Vector2(otherInfo.xInput * -1 *impulseRate, otherInfo.yInput * -1 * impulseRate), ForceMode2D.Impulse);
+		}
+		else if (other.gameObject.tag == "Player" && !grounded && !otherInfo.grounded) {
+			playerRigidBody.AddForce (new Vector2(xInput * -2 *impulseRate, yInput * -2 * impulseRate), ForceMode2D.Impulse);
+			Debug.Log("Hey Player: " + myInfo.playerNum);
+		}
 	}
 
 }
