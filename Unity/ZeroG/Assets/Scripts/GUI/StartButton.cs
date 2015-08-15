@@ -3,8 +3,8 @@ using System.Collections;
 
 public class StartButton : MonoBehaviour {
 
-    void OnClick()
-    { 
-        
+    public void OnClick()
+    {
+        ControlCenter.Instance.LoadGame();
     }
 }
