@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
     public class PlayerData
     {
         public enum Country {Japan, USA, China, Russia};

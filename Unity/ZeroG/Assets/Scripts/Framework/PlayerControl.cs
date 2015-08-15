@@ -22,9 +22,32 @@ namespace Assets.Scripts.Framework
 
         public GameObject ChinaPrefab;
 
-        public void Initialize()
-        { 
-        
+        public void Awake()
+        {
+            LoadPlayers(DebugData());
+        }
+
+        public List<PlayerData> DebugData()
+        {
+            PlayerData data1 = new PlayerData();
+            data1.PlayerCountry = PlayerData.Country.China;
+            data1.PlayerNum = 0;
+
+            PlayerData data2 = new PlayerData();
+            data2.PlayerCountry = PlayerData.Country.Russia;
+            data2.PlayerNum = 1;
+
+            PlayerData data3 = new PlayerData();
+            data3.PlayerCountry = PlayerData.Country.USA;
+            data3.PlayerNum = 2;
+
+            PlayerData data4 = new PlayerData();
+            data4.PlayerCountry = PlayerData.Country.Japan;
+            data4.PlayerNum = 3;
+
+            List<PlayerData> data = new List<PlayerData>() { data1, data2, data3, data4 };
+
+            return data;
         }
 
         public void LoadPlayers(List<PlayerData> data) 
@@ -32,7 +55,7 @@ namespace Assets.Scripts.Framework
             _data = data;
             for (int i = 0; i < data.Count; i++)
             {
-                LoadPlayer(data[0]);
+                LoadPlayer(data[i]);
             }
         }
 

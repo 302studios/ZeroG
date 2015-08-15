@@ -14,17 +14,21 @@ public class PlayerController : MonoBehaviour {
 	public bool canJump;
 	bool didJump;
 	public bool grounded;
+	public bool hasBall;
+	public GameObject theBall;
 
 	// Use this for initialization
 	void Start () {
 	
 		playerRigidBody = GetComponent<Rigidbody2D> ();
 		myInfo = GetComponent<PlayerClass> ();
+		theBall = null;
 
 		canJump = true;
 		didJump = false;
 		grounded = false;
-		impulseRate = 20f;
+		hasBall = false;
+		impulseRate = 15f;
 	}
 	
 	// Update is called once per frame
@@ -33,7 +37,12 @@ public class PlayerController : MonoBehaviour {
 		calculateArrowAngle ();
 
 		if (didJump) {
-			Jump();
+			if(hasBall){
+				theBall.GetComponent<Script_GameBall>().pushBall(xInput, yInput);
+
+			}else{
+				Jump();
+			}
 		}
 
 	}
@@ -135,6 +144,32 @@ public class PlayerController : MonoBehaviour {
 			playerRigidBody.AddForce (new Vector2(xInput * -2 *impulseRate, yInput * -2 * impulseRate), ForceMode2D.Impulse);
 			Debug.Log("Hey Player: " + myInfo.Data.PlayerNum);
 		}
+
+		if (other.gameObject.tag == "Ball") {
+
+			//theBall.transform.parent = this.gameObject.transform.FindChild("Player Sprite").transform;
+			BallGrab(other.gameObject);
+		}
+	}
+
+	void BallGrab(GameObject ball){
+
+		theBall = ball;
+		//theBall.GetComponent<Rigidbody2D> ().isKinematic = true;
+		theBall.transform.parent = this.gameObject.transform;
+		theBall.transform.localPosition = new Vector3(0, 0, 0);
+		hasBall = true;
+
+	}
+
+	void OnTriggerExit2D(Collider2D other){
+
+		if (other.gameObject.tag == "Ball") {
+			theBall = null;
+			hasBall = false;
+			didJump = false;
+		}
+
 	}
 
 }
