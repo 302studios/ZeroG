@@ -19,22 +19,7 @@ public class BallClass : MonoBehaviour {
 	
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.left * speed, ForceMode2D.Impulse);
-		}
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.right * speed, ForceMode2D.Impulse);
-		}
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.up * speed, ForceMode2D.Impulse);
-		}
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.down * speed, ForceMode2D.Impulse);
-		}
+
 	}
 
 	void OnTriggerStay2D (Collider2D other){
