@@ -32,8 +32,5 @@ public class ControlCenter : Singleton<ControlCenter> {
         GameObject.DontDestroyOnLoad(gameObject);
     }
 
-    public override void Destroyed()
-    {
-        //TO DO
-    }
+	public override void Destroyed(){}
 }
