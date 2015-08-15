@@ -15,4 +15,12 @@ public class PlayerClass : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void Spawn(Transform spawnPoint){
+
+	}
+
+	void Pause(){
+
+	}
 }

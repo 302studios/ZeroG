@@ -12,4 +12,8 @@ public class GravityWellClass : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void Spawn(Transform spawnPoint){
+
+	}
 }
