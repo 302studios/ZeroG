@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void ControllerInput () {
 
-		switch (myInfo.playerNum) {
+		switch (myInfo.Data.PlayerNum) {
 
 		case 0:
 			xInput = Input.GetAxis ("Horiz_P1");
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		else if (other.gameObject.tag == "Player" && !grounded && !otherInfo.grounded) {
 			playerRigidBody.AddForce (new Vector2(xInput * -2 *impulseRate, yInput * -2 * impulseRate), ForceMode2D.Impulse);
-			Debug.Log("Hey Player: " + myInfo.playerNum);
+			Debug.Log("Hey Player: " + myInfo.Data.PlayerNum);
 		}
 
 		if (other.gameObject.tag == "Ball") {
