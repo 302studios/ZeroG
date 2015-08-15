@@ -8,15 +8,20 @@ public class PlayerController : MonoBehaviour {
 	float yInput;
 	Rigidbody2D playerRigidBody;
 	float impulseRate;
+	PlayerClass myInfo;
 
 	// Conditional Checks
 	bool canJump;
+	bool didJump;
 
 	// Use this for initialization
 	void Start () {
 	
 		playerRigidBody = GetComponent<Rigidbody2D> ();
+		myInfo = GetComponent<PlayerClass> ();
+
 		canJump = true;
+		didJump = false;
 		impulseRate = 20f;
 	}
 	
@@ -25,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 	
 		calculateArrowAngle ();
 
-		if (Input.GetButtonUp ("Fire1") && canJump) {
+		if (didJump) {
 			Jump();
 		}
 
@@ -36,24 +41,18 @@ public class PlayerController : MonoBehaviour {
 		float arrowDegree;
 
 		ControllerInput ();
-		//if (yInput == 90f && xInput == 0) {
-		//	arrowDegree = 90f;
-		//} else {
-			arrowDegree = Mathf.Atan2(yInput,xInput) * Mathf.Rad2Deg;
-		//}
+	
+		arrowDegree = Mathf.Atan2(yInput,xInput) * Mathf.Rad2Deg;
 
-		//if (xInput < 0) {
-		//	arrowDegree += 180f;
-		//}
 
 		PlayerArrow.transform.eulerAngles = new Vector3(0, 0, arrowDegree);
-		Debug.Log ("Arrow Degree: " + arrowDegree);
 
 	}
 
 	void Jump() {
 
-		ControllerInput ();
+		didJump = false;
+		canJump = false;
 
 		playerRigidBody.AddForce (new Vector2(xInput * impulseRate, yInput * impulseRate), ForceMode2D.Impulse); 
 
@@ -61,17 +60,62 @@ public class PlayerController : MonoBehaviour {
 	
 	void ControllerInput () {
 
-		xInput = Input.GetAxis ("Horizontal");
-		yInput = Input.GetAxis ("Vertical");
+		switch (myInfo.playerNum) {
 
-		if (Input.GetAxis ("Horizontal") == 0 && yInput == 0) {
+		case 0:
+			xInput = Input.GetAxis ("Horiz_P1");
+			yInput = Input.GetAxis ("Vert_P1");
+			if (Input.GetButtonUp ("Push_P1") && canJump) {
+				didJump = true;
+			}
+			break;
+		case 1:
+			xInput = Input.GetAxis ("Horiz_P2");
+			yInput = Input.GetAxis ("Vert_P2");
+			if (Input.GetButtonUp ("Push_P2") && canJump) {
+				didJump = true;
+			}
+			break;
+		case 2:
+			xInput = Input.GetAxis ("Horiz_P3");
+			yInput = Input.GetAxis ("Vert_P3");
+			if (Input.GetButtonUp ("Push_P3") && canJump) {
+				didJump = true;
+			}
+			break;
+		case 3:
+			xInput = Input.GetAxis ("Horiz_P4");
+			yInput = Input.GetAxis ("Vert_P4");
+			if (Input.GetButtonUp ("Push_P4") && canJump) {
+				didJump = true;
+			}
+			break;
+
+		}
+
+		if (xInput == 0 && yInput == 0) {
 			xInput = 1;
-		} else {
-			xInput = Input.GetAxis ("Horizontal");
 		}
 
 
 		//Debug.Log ("Horizontal Axis: " + xInput);
 		//Debug.Log ("Vertical Axis: " + yInput);
 	}
+
+	void OnCollisionStay2D(Collision2D other){
+
+		if (other.gameObject.tag == "Environment") {
+			canJump = true;
+		}
+
+	}
+
+	void OnCollisionEnter2D(Collision2D other){
+		
+		if (other.gameObject.tag == "Player") {
+			playerRigidBody.AddForce (new Vector2(xInput * -1 *impulseRate, yInput * -1 * impulseRate), ForceMode2D.Impulse);
+		}
+		
+	}
+
 }

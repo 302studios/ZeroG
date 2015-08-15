@@ -31,4 +31,6 @@ public class ControlCenter : Singleton<ControlCenter> {
         Application.LoadLevel("Score");
         GameObject.DontDestroyOnLoad(gameObject);
     }
+
+	public override void Destroyed(){}
 }
