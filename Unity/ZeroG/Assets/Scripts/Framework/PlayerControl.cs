@@ -81,7 +81,14 @@ namespace Assets.Scripts.Framework
 
         public List<PlayerData> GetAllPlayerData() 
         {
-            return _data;
+            List<PlayerData> data = new List<PlayerData>();
+
+            foreach (PlayerClass player in _players)
+            {
+                data.Add(player.Data);
+            }
+
+            return data;
         }
 
         public PlayerData GetPlayerData(int index)
