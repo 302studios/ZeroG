@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OneShotParticle : MonoBehaviour  {
+public class OneShotParticle : MonoBehaviour   {
+	private ParticleSystem ps;
 	
-	private IEnumerator Start()
+	
+	public void Start() 
 	{
-		yield return new WaitForSeconds(GetComponent<ParticleSystem>().duration);
-		Destroy(gameObject); 
+		ps = GetComponent<ParticleSystem>();
 	}
 	
+	public void Update() 
+	{
+		if(ps)
+		{
+			if(!ps.IsAlive())
+			{
+				Destroy(gameObject);
+			}
+		}
+	}
 }
