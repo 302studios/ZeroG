@@ -5,7 +5,8 @@ using System;
 
 
 public class TimerClass : MonoBehaviour {
-	
+
+	public enum Country {Japan, USA, China, Russia};
 	private float timeLeft;
 	private int minsPerSec = 60 ;
 	private int minsPerMatch = 183;
@@ -18,10 +19,12 @@ public class TimerClass : MonoBehaviour {
 	public GameObject LeaderBoard;
 	public GameObject Timer;
 	public GameObject CountDown;
+	public int[] finalScores;
 	
 	// Use this for initialization
 	void Start () {
 		endGame += stopTimer;
+		endGame += computeFinalScores;
 		endGame += showLeaderBoard;
 	}
 	
@@ -52,8 +55,16 @@ public class TimerClass : MonoBehaviour {
 	void stopTimer(){
 		Timer.active = false;
 	}
+
+	void computeFinalScores(){
+		finalScores [0] = ControlCenter.Instance.Team1Score;
+		finalScores [1] = ControlCenter.Instance.Team1Score;
+		CountDown.GetComponent<Text> ().text = "Team1: " + finalScores [0] + "  Team2: " + finalScores [1];
+		CountDown.active = true;
+	}
 	
 	void showLeaderBoard(){
 		LeaderBoard.active = true;
 	}
+	
 }
