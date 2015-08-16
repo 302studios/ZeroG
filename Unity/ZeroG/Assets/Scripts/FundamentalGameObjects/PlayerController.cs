@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
 	PlayerClass myInfo;
 
 	public Animator anims;
+	public AudioClip[] grunts;
+	AudioSource audioPlayer;
 
 	// Conditional Checks
 	public bool canJump;
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour {
 	
 		playerRigidBody = GetComponent<Rigidbody2D> ();
 		myInfo = GetComponent<PlayerClass> ();
+		audioPlayer = GetComponent<AudioSource> ();
 		theBall = null;
 
         RegisterInput();
@@ -150,19 +153,23 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.tag == "Player" && grounded) {
 			playerRigidBody.AddForce (new Vector2(otherInfo.xInput * -1 *impulseRate, otherInfo.yInput * -1 * impulseRate), ForceMode2D.Impulse);
+			playGruntSound();
 		}
 		else if (other.gameObject.tag == "Player" && !grounded && !otherInfo.grounded && firstHit) {
 			playerRigidBody.AddForce (new Vector2(xInput * -2 *impulseRate, yInput * -2 * impulseRate), ForceMode2D.Impulse);
 			Debug.Log("Hey Player: " + myInfo.Data.PlayerNum);
+			playGruntSound();
 		}
 		else if (other.gameObject.tag == "Player" && !grounded && !otherInfo.grounded && !firstHit) {
 			playerRigidBody.AddForce (new Vector2(otherInfo.xInput * -2 *impulseRate, otherInfo.yInput * -2 * impulseRate), ForceMode2D.Impulse);
 			Debug.Log("Hey Player: " + myInfo.Data.PlayerNum);
+			playGruntSound();
 		}
 
 		if (other.gameObject.tag == "Player" && otherInfo.hasBall) {
 			BallGrab(otherInfo.theBall);
 			otherInfo.BallLost();
+			playGruntSound();
 		}
 
 		if (other.gameObject.tag == "Ball") {
@@ -227,6 +234,12 @@ public class PlayerController : MonoBehaviour {
 			firstHit = false;
 		}
 		checkStarted = false;
+	}
+
+	void playGruntSound(){
+
+		audioPlayer.PlayOneShot (grunts [Random.Range (0, grunts.Length)]);
+
 	}
 
 }
