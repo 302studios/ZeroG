@@ -33,12 +33,12 @@ public class TimerClass : MonoBehaviour {
 		timeLeft = secsPerMatch - (int)timePassed;
 		if (timeLeft > 0) {
 			if (timePassed > 3f){
-				GetComponent ("InputControl").GetComponent<InputControl>().inputEnabled = true;
+				GameObject.Find ("InputControl").GetComponent<InputControl>().inputEnabled = true;
 				CountDown.active = false;
 				Timer.active = true;
 			}
 			else{
-				GetComponent ("InputControl").GetComponent<InputControl>().inputEnabled = false;
+				GameObject.Find ("InputControl").GetComponent<InputControl>().inputEnabled = false;
 			}
 			mins = (int)(timeLeft / minsPerSec);
 			seconds = (int)timeLeft - (mins * 60);

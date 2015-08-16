@@ -48,17 +48,18 @@ public class DisplayFinalScores : MonoBehaviour {
 	}
 
 	void FindWinningCountry(string winner){
-		foreach (PlayerData player in _playerData) {
-			if (player.PlayerNum < 2 && winner == "Team 1"){
-				winningCountry = player.PlayerCountry;
-				DisplayWinner(winningCountry);
-			}
-			else if (player.PlayerNum >= 2 && winner == "Team 2"){
-				winningCountry = player.PlayerCountry;
-				DisplayWinner(winningCountry);
-			}
-			else{
-				Tie();
+		Debug.Log (winner);
+		if (winner == "Tie") {
+			Tie ();
+		} else {
+			foreach (PlayerData player in _playerData) {
+				if (player.PlayerNum < 2 && winner == "Team 1") {
+					winningCountry = player.PlayerCountry;
+					DisplayWinner (winningCountry);
+				} else if (player.PlayerNum >= 2 && winner == "Team 2") {
+					winningCountry = player.PlayerCountry;
+					DisplayWinner (winningCountry);
+				}
 			}
 		}
 		LoadTeam1Data ();
