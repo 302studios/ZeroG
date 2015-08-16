@@ -11,7 +11,14 @@ public class PlayerController : MonoBehaviour {
 	PlayerClass myInfo;
 
 	public Animator anims;
+
+
+	// Audio
 	public AudioClip[] grunts;
+	public AudioClip jump;
+	public AudioClip land;
+	public AudioClip chargedUp;
+	public AudioClip shoot;
 	AudioSource audioPlayer;
 
 	public CharacterSwap spriteHandler;
@@ -65,6 +72,7 @@ public class PlayerController : MonoBehaviour {
 			if(hasBall){
 				theBall.GetComponent<Script_GameBall>().pushBall(xInput, yInput);
 				anims.SetTrigger ("Launch_Release");
+				audioPlayer.PlayOneShot (shoot);
 			}else{
 				Jump();
 			}
@@ -99,6 +107,7 @@ public class PlayerController : MonoBehaviour {
 		anims.SetBool ("Grounded", grounded);
 
 		anims.SetTrigger ("Launch_Release");
+		audioPlayer.PlayOneShot (jump);
 		playerRigidBody.AddForce (new Vector2(xInput * impulseRate, yInput * impulseRate), ForceMode2D.Impulse); 
 
 	}
@@ -116,6 +125,7 @@ public class PlayerController : MonoBehaviour {
         {
 			jumpHold = true;
 			anims.SetBool("Launch_Hold", jumpHold);
+			audioPlayer.PlayOneShot (chargedUp);
         }
 		if(up && jumpHold)
 		{

@@ -70,6 +70,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     public void OnDestroy()
     {
         applicationIsQuitting = true;
+        _instance = null;
         Destroyed();
     }
 

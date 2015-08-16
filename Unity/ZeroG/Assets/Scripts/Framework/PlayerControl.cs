@@ -157,6 +157,6 @@ using System.Text;
 
         public override void Destroyed()
         {
-            throw new NotImplementedException();
+            //null
         }
     }

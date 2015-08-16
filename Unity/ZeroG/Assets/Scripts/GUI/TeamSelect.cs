@@ -33,7 +33,7 @@ class TeamSelect:MonoBehaviour
     {
         for (int i = 0; i < Buttons.Count; i++)
         {
-            if (Buttons[i].IsInteractable())
+            if (Buttons[i].interactive)
                 return false;
         }
 
@@ -151,19 +151,12 @@ class TeamSelect:MonoBehaviour
 
     private TeamSelectButton NextButtonAvailable(int index)
     {
-        if(CurSelected != null)
+        for (int i = 0; i < Buttons.Count; i++)
         {
-            int nextIndex = (index + 1) % Buttons.Count;
-            if (Buttons[nextIndex].IsInteractable())
-            {
-                return Buttons[nextIndex];
-            }
-            else
-                if(!SelectionCap())
-            {
-                return NextButtonAvailable(index);
-            }
+            if (Buttons[i].interactive)
+                return Buttons[i];
         }
+
         return null;
     }
 
