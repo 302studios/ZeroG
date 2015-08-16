@@ -7,6 +7,8 @@ public class DisplayFinalScores : MonoBehaviour {
 
 	public List<PlayerData> _playerData;
 	private PlayerData.Country winningCountry;
+	public Sprite[] winningFlags;
+	public Sprite[] flags;
 	private GameObject[] players;
 	public GameObject WinningTeam;
 	public GameObject Team1Score;
@@ -65,16 +67,16 @@ public class DisplayFinalScores : MonoBehaviour {
 
 	void DisplayWinner(PlayerData.Country winningCountry){
 		if (winningCountry == PlayerData.Country.USA) {
-			//WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/AmericaWins");
+			WinningTeam.GetComponent<Image> ().sprite = winningFlags[0];
 		}
 		else if (winningCountry == PlayerData.Country.Japan) {
-			WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/JapanWins");
+			WinningTeam.GetComponent<Image> ().sprite = winningFlags[2];
 		}
 		else if (winningCountry == PlayerData.Country.China) {
-			WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/ChinaWins");
+			WinningTeam.GetComponent<Image> ().sprite = winningFlags[1];
 		}
 		else if (winningCountry == PlayerData.Country.Russia) {
-			WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/RussiaWins");
+			WinningTeam.GetComponent<Image> ().sprite = winningFlags[3];
 		}
 	}
 
@@ -112,16 +114,16 @@ public class DisplayFinalScores : MonoBehaviour {
 
 	void loadTeamFlag(PlayerData.Country country, GameObject teamFlag){
 		if (country == PlayerData.Country.USA) {
-			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/AmericanFlag");
+			teamFlag.GetComponent<Image> ().sprite = flags[0];
 		}
 		else if (country == PlayerData.Country.Japan) {
-			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/JapaneseFlag");
+			teamFlag.GetComponent<Image> ().sprite = flags[2];
 		}
 		else if (country == PlayerData.Country.China) {
-			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/ChineseFlag");
+			teamFlag.GetComponent<Image> ().sprite = flags[1];
 		}
 		else if (country == PlayerData.Country.Russia) {
-			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/RussianFlag");
+			teamFlag.GetComponent<Image> ().sprite = flags[3];
 		}
 	}
 
