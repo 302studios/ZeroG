@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip[] grunts;
 	AudioSource audioPlayer;
 
+	public CharacterSwap spriteHandler;
+
 	// Conditional Checks
 	public bool canJump;
 	bool didJump;
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour {
 		impulseRate = 15f;
 
 		respawnPoint = this.transform.position;
+
+		spriteHandler.setSprites (myInfo.Data.PlayerCountry);
 
 	}
 	
