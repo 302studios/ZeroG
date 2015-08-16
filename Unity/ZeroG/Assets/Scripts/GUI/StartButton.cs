@@ -5,6 +5,6 @@ public class StartButton : MonoBehaviour {
 
     public void OnClick()
     {
-        ControlCenter.Instance.LoadGame();
+        ControlCenter.Instance.LoadTeamSelect();
     }
 }

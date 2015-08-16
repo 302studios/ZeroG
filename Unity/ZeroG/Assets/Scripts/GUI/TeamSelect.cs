@@ -107,7 +107,7 @@ class TeamSelect:MonoBehaviour
         }
         else 
         {
-            Debug.Log("LOAD THE FUCKING GAME");
+			ControlCenter.Instance.LoadGame(Players);
         }
     }
 

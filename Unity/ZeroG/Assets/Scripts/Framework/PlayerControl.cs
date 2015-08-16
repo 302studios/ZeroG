@@ -22,7 +22,7 @@ using System.Text;
 
         public void Awake()
         {
-            LoadPlayers(DebugData());
+            LoadPlayers(ControlCenter.Instance._playerData);
         }
 
         public List<PlayerData> DebugData()

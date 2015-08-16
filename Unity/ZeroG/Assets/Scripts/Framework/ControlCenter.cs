@@ -24,9 +24,10 @@ public class ControlCenter : Singleton<ControlCenter> {
         GameObject.DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadGame()
+    public void LoadGame(List<PlayerData> data)
     {
-        Application.LoadLevel("Player Control Workspace");
+		_playerData = data;
+        Application.LoadLevel("The Arena");
         GameObject.DontDestroyOnLoad(gameObject);
     }
 
