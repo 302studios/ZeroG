@@ -39,7 +39,7 @@ public class Script_GameBall : MonoBehaviour {
 		{
 			bounceCount++;
 			
-			if(bounceCount == 2)
+			if(bounceCount == 4)
 				StopBounce();
 		}
 	}

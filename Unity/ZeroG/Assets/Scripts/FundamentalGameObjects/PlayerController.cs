@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour {
 		myInfo = GetComponent<PlayerClass> ();
 		theBall = null;
 
+        RegisterInput();
+
 		canJump = true;
 		didJump = false;
 		grounded = false;
@@ -66,7 +68,10 @@ public class PlayerController : MonoBehaviour {
 
 		float arrowDegree;
 
-		ControllerInput ();
+        if (xInput == 0 && yInput == 0)
+        {
+            xInput = 1;
+        }
 	
 		arrowDegree = Mathf.Atan2(yInput,xInput) * Mathf.Rad2Deg;
 
@@ -83,50 +88,21 @@ public class PlayerController : MonoBehaviour {
 		playerRigidBody.AddForce (new Vector2(xInput * impulseRate, yInput * impulseRate), ForceMode2D.Impulse); 
 
 	}
-	
-	void ControllerInput () {
 
-		switch (myInfo.Data.PlayerNum) {
+    void RegisterInput()
+    {
+        InputControl.Instance.RegisterInputEvent(myInfo.Data.PlayerNum, new InputControlData.InputAction(UpdateValues));
+    }
 
-		case 0:
-			xInput = Input.GetAxis ("Horiz_P1");
-			yInput = Input.GetAxis ("Vert_P1");
-			if (Input.GetButtonUp ("Push_P1") && canJump) {
-				didJump = true;
-			}
-			break;
-		case 1:
-			xInput = Input.GetAxis ("Horiz_P2");
-			yInput = Input.GetAxis ("Vert_P2");
-			if (Input.GetButtonUp ("Push_P2") && canJump) {
-				didJump = true;
-			}
-			break;
-		case 2:
-			xInput = Input.GetAxis ("Horiz_P3");
-			yInput = Input.GetAxis ("Vert_P3");
-			if (Input.GetButtonUp ("Push_P3") && canJump) {
-				didJump = true;
-			}
-			break;
-		case 3:
-			xInput = Input.GetAxis ("Horiz_P4");
-			yInput = Input.GetAxis ("Vert_P4");
-			if (Input.GetButtonUp ("Push_P4") && canJump) {
-				didJump = true;
-			}
-			break;
-
-		}
-
-		if (xInput == 0 && yInput == 0) {
-			xInput = 1;
-		}
-
-
-		//Debug.Log ("Horizontal Axis: " + xInput);
-		//Debug.Log ("Vertical Axis: " + yInput);
-	}
+    void UpdateValues(float XAxis, float YAxis, bool down)
+    {
+        xInput = XAxis;
+        yInput = YAxis;
+        if (down && canJump)
+        {
+            didJump = true;
+        }
+    }
 
 	void OnCollisionStay2D(Collision2D other){
 

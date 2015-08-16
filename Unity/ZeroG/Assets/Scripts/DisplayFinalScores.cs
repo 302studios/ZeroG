@@ -59,14 +59,70 @@ public class DisplayFinalScores : MonoBehaviour {
 				Tie();
 			}
 		}
+		LoadTeam1Data ();
+		LoadTeam2Data ();
 	}
 
 	void DisplayWinner(PlayerData.Country winningCountry){
-
+		if (winningCountry == PlayerData.Country.USA) {
+			//WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/AmericaWins");
+		}
+		else if (winningCountry == PlayerData.Country.Japan) {
+			WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/JapanWins");
+		}
+		else if (winningCountry == PlayerData.Country.China) {
+			WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/ChinaWins");
+		}
+		else if (winningCountry == PlayerData.Country.Russia) {
+			WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/RussiaWins");
+		}
 	}
 
 	void Tie(){
-		WinningTeam.GetComponent<Image> ().overrideSprite = GetComponent ("Tie");
+		WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/Tie");
+	}
+
+	void LoadTeam1Data(){
+		foreach (PlayerData player in _playerData) {
+			PlayerData.Country team1country;
+			if (player.PlayerNum == 0){
+				P1Score.GetComponent<Text> ().text = "" + player.PlayerScore + "";
+				team1country = player.PlayerCountry;
+				loadTeamFlag(team1country, Team1Flag);
+			}
+			else if (player.PlayerNum == 1){
+				P2Score.GetComponent<Text> ().text = "" + player.PlayerScore + "";
+			}
+		}
+	}
+
+	void LoadTeam2Data(){
+		foreach (PlayerData player in _playerData) {
+			PlayerData.Country team2country;
+			if (player.PlayerNum == 2){
+				P3Score.GetComponent<Text> ().text = "" + player.PlayerScore + "";
+				team2country = player.PlayerCountry;
+				loadTeamFlag(team2country, Team2Flag);
+			}
+			else if (player.PlayerNum == 3){
+				P4Score.GetComponent<Text> ().text = "" + player.PlayerScore + "";
+			}
+		}
+	}
+
+	void loadTeamFlag(PlayerData.Country country, GameObject teamFlag){
+		if (country == PlayerData.Country.USA) {
+			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/AmericanFlag");
+		}
+		else if (country == PlayerData.Country.Japan) {
+			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/JapaneseFlag");
+		}
+		else if (country == PlayerData.Country.China) {
+			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/ChineseFlag");
+		}
+		else if (country == PlayerData.Country.Russia) {
+			teamFlag.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/RussianFlag");
+		}
 	}
 
 
