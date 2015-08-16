@@ -104,12 +104,12 @@ using System.Text;
         public void Update()
         {
 			if (inputEnabled) {
-			foreach (InputControlData data in _inputDataDictionary) {
-				if (data.UpdateInputs ()) {
-					data.RaiseInputAction ();
+				foreach (InputControlData data in _inputDataDictionary) {
+					if (data.UpdateInputs ()) {
+						data.RaiseInputAction ();
+					}
 				}
 			}
-		}
         }
 
         public override     void Destroyed()
