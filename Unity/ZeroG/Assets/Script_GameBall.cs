@@ -45,9 +45,7 @@ public class Script_GameBall : MonoBehaviour {
 	}
 
 	public void pushBall(float pushX, float pushY){
-
-		Debug.Log ("Push the Ball!!");
-
+		
 		ballRigidBody.isKinematic = false;
 		ballRigidBody.AddForce(new Vector2(pushX, pushY) * forceValue * Time.deltaTime, ForceMode2D.Impulse);
 		ballRigidBody.isKinematic = false;
@@ -58,6 +56,13 @@ public class Script_GameBall : MonoBehaviour {
 	{
 		ballRigidBody.velocity = Vector3.zero;
 		ballRigidBody.isKinematic = true;
+		bounceCount = 0;
+	}
+
+	public void StopBall()
+	{
+		ballRigidBody.velocity = Vector3.zero;
+		//ballRigidBody.isKinematic = true;
 		bounceCount = 0;
 	}
 

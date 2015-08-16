@@ -34,7 +34,7 @@ namespace Assets.Scripts.Framework
             data1.PlayerNum = 0;
 
             PlayerData data2 = new PlayerData();
-            data2.PlayerCountry = PlayerData.Country.Russia;
+            data2.PlayerCountry = PlayerData.Country.China;
             data2.PlayerNum = 1;
 
             PlayerData data3 = new PlayerData();
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Framework
             data3.PlayerNum = 2;
 
             PlayerData data4 = new PlayerData();
-            data4.PlayerCountry = PlayerData.Country.Japan;
+            data4.PlayerCountry = PlayerData.Country.USA;
             data4.PlayerNum = 3;
 
             List<PlayerData> data = new List<PlayerData>() { data1, data2, data3, data4 };
