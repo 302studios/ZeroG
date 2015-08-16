@@ -34,6 +34,14 @@ using System.Text;
             return isChanged;
         }
 
+        public void RemoveInputAction(InputAction action)
+        {
+            if (InputActionHandler != null)
+            {
+                InputActionHandler -= action;
+            }
+        }
+
         public void RegisterInputAction(InputAction action)
         {
             if(InputActionHandler == null)
@@ -97,6 +105,17 @@ using System.Text;
                 if(data.DeviceNumber == index)
                 {
                     data.RegisterInputAction(action);
+                }
+            }
+        }
+
+        public void UnRegisterInputEvent(int index, InputControlData.InputAction action)
+        {
+            foreach (InputControlData data in _inputDataDictionary)
+            {
+                if (data.DeviceNumber == index)
+                {
+                    data.RemoveInputAction(action);
                 }
             }
         }

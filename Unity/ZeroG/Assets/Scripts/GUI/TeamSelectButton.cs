@@ -3,62 +3,44 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-class TeamSelectButton:MonoBehaviour
+class TeamSelectButton : Button
 {
-    private List<Button> _buttons = new List<Button>();
-
-    private Button _curSelected;
+    public Image Border;
 
     public void Start()
     {
-        InputControl.Instance.RegisterInputEvent(0, new InputControlData.InputAction(OnClick));
-        
+        Border = gameObject.GetComponentsInChildren<Image>()[1];
     }
 
-
-    public void OnClick(float XAxis, float YAxis, bool MouseDown, bool MouseUp)
+    public void Selected()
     {
-
-        int index;
-
-        if (_curSelected != null)
-        {
-            index = _buttons.IndexOf(_curSelected);
-        }
-        else
-        {
-            index = 0;
-        }
-
-        
-        if (XAxis > 0)
-        {
-            index = (index + 1) % _buttons.Count;
-        }
-        else
-            if (XAxis < 0)
-            {
-                index = (index - 1) % _buttons.Count;
-            }
-
-        if (YAxis > 0)
-        {
-            index = (index + 2) % _buttons.Count;
-        }
-        else
-            if (YAxis < 0)
-            {
-                index = (index - 2) % _buttons.Count;
-            }
-        
+        BorderSwitch(true);
+        base.Select();
     }
 
-    private void NextButton()
-    { 
-        
+    public override void Select()
+    {
+        base.Select();
     }
 
-    private void PrevButton()
+    public void Deselect()
+    {
+        BorderSwitch(false);
+    }
+
+    public void BorderSwitch(bool on)
+    {
+        Border.enabled = on;
+    }
+
+    public void Disable()
+    {
+        interactable = false;
+        GetComponent<Image>().color = Color.gray;
+        DoStateTransition(SelectionState.Disabled, true);
+    }
+
+    public void Test()
     {
 
     }
