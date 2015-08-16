@@ -23,8 +23,7 @@ public class PlayerClass : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		colorPicker ();
+
 	}
 
     public void LoadPlayerData(PlayerData data)
@@ -35,15 +34,6 @@ public class PlayerClass : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		
-	}
-	
-	void colorPicker() {
-	
-		playerSprites = GetComponentsInChildren<SpriteRenderer> ();
-		foreach (SpriteRenderer sp in playerSprites) {
-			sp.color = Data.PlayerColor;
-		}
 		
 	}
 

@@ -24,7 +24,7 @@ public class ControlCenter : Singleton<ControlCenter> {
 
     public void LoadGame()
     {
-        Application.LoadLevel("Game");
+        Application.LoadLevel("Player Control Workspace");
         GameObject.DontDestroyOnLoad(gameObject);
     }
 
