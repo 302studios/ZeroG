@@ -23,9 +23,7 @@ public class TimerClass : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		endGame += stopTimer;
-		endGame += computeFinalScores;
-		endGame += showLeaderBoard;
+
 	}
 	
 	// Update is called once per frame
@@ -48,23 +46,8 @@ public class TimerClass : MonoBehaviour {
 			CountDown.GetComponent<Text>().text = ""+countDownNum+"";
 		}
 		else {
-			endGame();
+			ControlCenter.Instance.LoadScore();
 		}
-	}
-	
-	void stopTimer(){
-		Timer.active = false;
-	}
-
-	void computeFinalScores(){
-		//finalScores [0] = ControlCenter.Instance.Team1Score;
-		//finalScores [1] = ControlCenter.Instance.Team1Score;
-		CountDown.GetComponent<Text> ().text = ("Team1: " + ControlCenter.Instance.Team1Score + "  Team2: " + ControlCenter.Instance.Team2Score);
-		CountDown.active = true;
-	}
-	
-	void showLeaderBoard(){
-		LeaderBoard.active = true;
 	}
 	
 }
