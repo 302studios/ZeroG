@@ -7,6 +7,7 @@ using System;
 public class TimerClass : MonoBehaviour {
 
 	public enum Country {Japan, USA, China, Russia};
+	
 	private float timeLeft;
 	private int minsPerSec = 60 ;
 	private int secsPerMatch = 63;
@@ -32,8 +33,12 @@ public class TimerClass : MonoBehaviour {
 		timeLeft = secsPerMatch - (int)timePassed;
 		if (timeLeft > 0) {
 			if (timePassed > 3f){
+				GetComponent ("InputControl").GetComponent<InputControl>().inputEnabled = true;
 				CountDown.active = false;
 				Timer.active = true;
+			}
+			else{
+				GetComponent ("InputControl").GetComponent<InputControl>().inputEnabled = false;
 			}
 			mins = (int)(timeLeft / minsPerSec);
 			seconds = (int)timeLeft - (mins * 60);

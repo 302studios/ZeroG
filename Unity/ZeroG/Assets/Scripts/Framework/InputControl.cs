@@ -55,6 +55,7 @@ using System.Text;
 
     public class InputControl:Singleton<InputControl>
     {
+		public bool inputEnabled = true;
         List<InputControlData> _inputDataDictionary = new List<InputControlData>();
 
         public void Awake()
@@ -102,13 +103,13 @@ using System.Text;
 
         public void Update()
         {
-            foreach(InputControlData data in _inputDataDictionary)
-            {
-                if (data.UpdateInputs())
-                {
-                    data.RaiseInputAction();
-                }
-            }
+			if (inputEnabled) {
+			foreach (InputControlData data in _inputDataDictionary) {
+				if (data.UpdateInputs ()) {
+					data.RaiseInputAction ();
+				}
+			}
+		}
         }
 
         public override     void Destroyed()
