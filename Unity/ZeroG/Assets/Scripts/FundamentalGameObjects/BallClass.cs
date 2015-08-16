@@ -21,6 +21,7 @@ public class BallClass : MonoBehaviour {
 
 	public void assignPosession(GameObject player){
 		playerLastTouched = player;
+		Debug.Log ("Last Player Touched: " + playerLastTouched.GetComponent<PlayerClass>().Data.PlayerNum);
 	}
 	
 

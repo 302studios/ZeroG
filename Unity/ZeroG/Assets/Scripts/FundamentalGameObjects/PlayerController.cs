@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour {
 		theBall.transform.parent = this.gameObject.transform;
 		theBall.transform.localPosition = new Vector3(0, 0, 0);
 		hasBall = true;
-		//ball.gameObject.GetComponent<BallClass> ().assignPosession (this.gameObject);
+		theBall.gameObject.GetComponent<BallClass> ().assignPosession (this.gameObject);
 	}
 
 	public void BallLost(){

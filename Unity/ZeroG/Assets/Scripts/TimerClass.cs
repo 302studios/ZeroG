@@ -9,7 +9,7 @@ public class TimerClass : MonoBehaviour {
 	public enum Country {Japan, USA, China, Russia};
 	private float timeLeft;
 	private int minsPerSec = 60 ;
-	private int secsPerMatch = 183;
+	private int secsPerMatch = 63;
 	private int mins;
 	private int seconds;
 	private int countDownNum;
@@ -57,9 +57,9 @@ public class TimerClass : MonoBehaviour {
 	}
 
 	void computeFinalScores(){
-		finalScores [0] = ControlCenter.Instance.Team1Score;
-		finalScores [1] = ControlCenter.Instance.Team1Score;
-		CountDown.GetComponent<Text> ().text = "Team1: " + finalScores [0] + "  Team2: " + finalScores [1];
+		//finalScores [0] = ControlCenter.Instance.Team1Score;
+		//finalScores [1] = ControlCenter.Instance.Team1Score;
+		CountDown.GetComponent<Text> ().text = ("Team1: " + ControlCenter.Instance.Team1Score + "  Team2: " + ControlCenter.Instance.Team2Score);
 		CountDown.active = true;
 	}
 	
