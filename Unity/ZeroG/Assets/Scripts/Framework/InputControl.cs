@@ -12,8 +12,9 @@ using System.Text;
         public string ButtonName;
         public float XAxis = 0;
         public float YAxis = 0;
-        public bool ButtonDown = false;
-        public delegate void InputAction(float x, float y, bool button);    
+		public bool ButtonDown = false;
+        public bool ButtonUp = false;
+        public delegate void InputAction(float x, float y, bool buttonDown, bool buttonUp);    
         public InputAction InputActionHandler;
         public bool UpdateInputs()
         {
@@ -21,9 +22,10 @@ using System.Text;
 
             float tempXAxis = Input.GetAxis (XAxisName);
 			float tempYAxis = Input.GetAxis (YAxisName);
-			ButtonDown= Input.GetButtonUp(ButtonName);
+			ButtonDown= Input.GetButtonDown(ButtonName);
+			ButtonUp= Input.GetButtonUp(ButtonName);
 
-            if(tempXAxis != XAxis || YAxis != tempYAxis || ButtonDown)
+            if(tempXAxis != XAxis || YAxis != tempYAxis || ButtonUp || ButtonDown)
                 isChanged = true;
 
             XAxis = Input.GetAxis (XAxisName);
@@ -47,7 +49,7 @@ using System.Text;
         public void RaiseInputAction()
         {
                 if(InputActionHandler != null)
-                    InputActionHandler(XAxis,YAxis,ButtonDown);
+                    InputActionHandler(XAxis,YAxis,ButtonDown,ButtonUp);
         }
     }
 

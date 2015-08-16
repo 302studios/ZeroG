@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour {
 	float impulseRate;
 	PlayerClass myInfo;
 
+	public Animator anims;
+
 	// Conditional Checks
 	public bool canJump;
 	bool didJump;
+	bool jumpHold;
 	public bool grounded;
 	public bool floatingCheck;
 	public bool checkStarted;
@@ -49,10 +52,12 @@ public class PlayerController : MonoBehaviour {
 	
 		calculateArrowAngle ();
 
+
+
 		if (didJump) {
 			if(hasBall){
 				theBall.GetComponent<Script_GameBall>().pushBall(xInput, yInput);
-
+				anims.SetTrigger ("Launch_Release");
 			}else{
 				Jump();
 			}
@@ -84,7 +89,9 @@ public class PlayerController : MonoBehaviour {
 		didJump = false;
 		canJump = false;
 		grounded = false;
+		anims.SetBool ("Grounded", grounded);
 
+		anims.SetTrigger ("Launch_Release");
 		playerRigidBody.AddForce (new Vector2(xInput * impulseRate, yInput * impulseRate), ForceMode2D.Impulse); 
 
 	}
@@ -94,14 +101,23 @@ public class PlayerController : MonoBehaviour {
         InputControl.Instance.RegisterInputEvent(myInfo.Data.PlayerNum, new InputControlData.InputAction(UpdateValues));
     }
 
-    void UpdateValues(float XAxis, float YAxis, bool down)
+    void UpdateValues(float XAxis, float YAxis, bool down, bool up)
     {
         xInput = XAxis;
         yInput = YAxis;
-        if (down && canJump)
+        if (down)
         {
-            didJump = true;
+			jumpHold = true;
+			anims.SetBool("Launch_Hold", jumpHold);
         }
+		if(up && jumpHold)
+		{
+			jumpHold = false;
+			anims.SetBool("Launch_Hold", jumpHold);
+		}
+		if (up && canJump) {
+			didJump = true;
+		}
     }
 
 	void OnCollisionStay2D(Collision2D other){
@@ -109,6 +125,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Environment") {
 			canJump = true;
 			grounded = true;
+			anims.SetBool ("Grounded", grounded);
 			floatingCheck = false;
 		}
 
@@ -119,6 +136,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Environment") {
 			canJump = false;
 			grounded = false;
+			anims.SetBool ("Grounded", grounded);
 			floatingCheck = true;
 		}
 		
@@ -179,6 +197,15 @@ public class PlayerController : MonoBehaviour {
 			hasBall = false;
 			didJump = false;
 		}
+
+	}
+
+	IEnumerator delayedJump(){
+
+		anims.SetTrigger ("Launch_Trigger");
+		yield return new WaitForSeconds (.2f);
+		playerRigidBody.AddForce (new Vector2(xInput * impulseRate, yInput * impulseRate), ForceMode2D.Impulse); 
+
 
 	}
 
