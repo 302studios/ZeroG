@@ -81,7 +81,7 @@ public class DisplayFinalScores : MonoBehaviour {
 	}
 
 	void Tie(){
-		WinningTeam.GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Art/ScoreBoard/Tie");
+		WinningTeam.GetComponent<Image> ().sprite = winningFlags[4];
 	}
 
 	void LoadTeam1Data(){
