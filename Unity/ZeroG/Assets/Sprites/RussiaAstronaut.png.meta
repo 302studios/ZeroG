@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4abfe0f5f89f04946b2c85673f9e8cd8
-timeCreated: 1439681269
+timeCreated: 1439683714
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,7 +62,7 @@ TextureImporter:
         width: 447
         height: 526
       alignment: 9
-      pivot: {x: .606516063, y: .503121376}
+      pivot: {x: .628553808, y: .540578067}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RussiaAstronaut_1
       rect:
@@ -72,7 +72,7 @@ TextureImporter:
         width: 219
         height: 366
       alignment: 9
-      pivot: {x: .432528228, y: .822980225}
+      pivot: {x: .410037607, y: .769150376}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RussiaAstronaut_2
       rect:
@@ -82,7 +82,7 @@ TextureImporter:
         width: 236
         height: 282
       alignment: 9
-      pivot: {x: .305208623, y: .820212305}
+      pivot: {x: .305208623, y: .76781404}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RussiaAstronaut_3
       rect:
@@ -92,7 +92,7 @@ TextureImporter:
         width: 229
         height: 314
       alignment: 9
-      pivot: {x: .349440604, y: .824180186}
+      pivot: {x: .38528809, y: .818951964}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RussiaAstronaut_4
       rect:
@@ -102,7 +102,7 @@ TextureImporter:
         width: 219
         height: 311
       alignment: 9
-      pivot: {x: .432527989, y: .822028279}
+      pivot: {x: .432527989, y: .816749573}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

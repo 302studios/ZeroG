@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3023101a9b2f52f41b660c3119b16918
-timeCreated: 1439681204
+timeCreated: 1439683238
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -92,7 +92,7 @@ TextureImporter:
         width: 235
         height: 334
       alignment: 9
-      pivot: {x: .465067774, y: .839177489}
+      pivot: {x: .465067774, y: .814599514}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AmericaAstronaut_4
       rect:
@@ -102,7 +102,7 @@ TextureImporter:
         width: 248
         height: 332
       alignment: 9
-      pivot: {x: .394076675, y: .836275578}
+      pivot: {x: .380836248, y: .79176873}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

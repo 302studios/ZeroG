@@ -10,35 +10,22 @@ public class BallClass : MonoBehaviour {
 	private float distanceBetweenX;
 	private float distanceBetweenY;
 	private Vector2 direction = new Vector2(1,1);
-
-
-	
-	public float speed = 105f;
+	public GameObject playerLastTouched;
 
 	private Vector2 expo = new Vector2();
 	
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.left * speed, ForceMode2D.Impulse);
-		}
-		if (Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.right * speed, ForceMode2D.Impulse);
-		}
-		if (Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.up * speed, ForceMode2D.Impulse);
-		}
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			GetComponent<Rigidbody2D>().AddForce(Vector3.down * speed, ForceMode2D.Impulse);
-		}
+
 	}
 
+	public void assignPosession(GameObject player){
+		playerLastTouched = player;
+	}
+	
+
 	void OnTriggerStay2D (Collider2D other){
-		if (other.tag == "Gravity Well") {
+		if (other.gameObject.tag == "Gravity Well") {
 			direction = new Vector2(1,1);
 
 			distanceBetweenX = other.transform.position.x - transform.position.x;
@@ -64,8 +51,12 @@ public class BallClass : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		if (other.gameObject.tag == "Gravity Well") {
-			GetComponent<Rigidbody2D>().isKinematic = true;
+			GetComponent<Rigidbody2D> ().isKinematic = true;
+		} 
+		else if (other.gameObject.tag == "Goal") {
+			other.gameObject.GetComponent<GoalClass>().PointScored(playerLastTouched);
 		}
+
 	}
 
 

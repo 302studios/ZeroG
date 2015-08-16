@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ControlCenter : Singleton<ControlCenter> {
 
+	public int Team1Score = 0;
+	public int Team2Score = 0;
 	
 	public void Awake() 
     {
