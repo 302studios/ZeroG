@@ -68,6 +68,9 @@ using System.Text;
 
         public void Awake()
         {
+
+            GameObject.DontDestroyOnLoad(gameObject);
+
             InputControlData data1  = new InputControlData(); 
             data1.DeviceNumber = 0;
             data1.XAxisName = "Horiz_P1";
@@ -136,4 +139,11 @@ using System.Text;
             //
         }
 
+        public void OnLevelWasLoaded()
+        {
+            for (int i = 0; i < _inputDataDictionary.Count; i++)
+            {
+                _inputDataDictionary[i].InputActionHandler = null;
+            }
+        }
 }

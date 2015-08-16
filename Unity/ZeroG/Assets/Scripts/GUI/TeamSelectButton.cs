@@ -7,6 +7,12 @@ class TeamSelectButton : Button
 {
     public Image Border;
 
+    public bool interactive
+    {
+        get { return base.interactable; }
+        set { }
+    }
+
     public void Start()
     {
         Border = gameObject.GetComponentsInChildren<Image>()[1];
