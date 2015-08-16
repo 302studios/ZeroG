@@ -31,6 +31,13 @@ public class Script_GameBall : MonoBehaviour {
 
 		//if(Input.GetMouseButtonDown(0))
 		//	ballRigidBody.AddForce(target * forceValue * Time.deltaTime, ForceMode2D.Impulse);
+
+		//if (transform.parent == null)
+			//ballRigidBody.isKinematic = true;
+
+		if (!ballRigidBody.isKinematic && bounceCount == 0 && transform.parent == null) {
+			ballRigidBody.isKinematic = true;
+		}
 	}
 
 	void OnCollisionEnter2D( Collision2D col)
@@ -42,13 +49,18 @@ public class Script_GameBall : MonoBehaviour {
 			if(bounceCount == 4)
 				StopBounce();
 		}
+
+		if (col.gameObject.tag == "Player") {
+			ballRigidBody.isKinematic = true;
+		}
 	}
 
 	public void pushBall(float pushX, float pushY){
 		
 		ballRigidBody.isKinematic = false;
+		bounceCount++;
 		ballRigidBody.AddForce(new Vector2(pushX, pushY) * forceValue * Time.deltaTime, ForceMode2D.Impulse);
-		ballRigidBody.isKinematic = false;
+		//ballRigidBody.isKinematic = false;
 
 	}
 
@@ -73,5 +85,14 @@ public class Script_GameBall : MonoBehaviour {
 		}
 
 	}
-	
+
+	IEnumerator ballKinematicReset(){
+
+		yield return new WaitForSeconds (3f);
+		if (!ballRigidBody.isKinematic && bounceCount == 0 && transform.parent == null) {
+			ballRigidBody.isKinematic = true;
+		}
+
+	}
+
 }

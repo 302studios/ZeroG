@@ -151,27 +151,34 @@ public class PlayerController : MonoBehaviour {
 	//	if(other.gameObject.tag == "Player")
 			otherInfo = other.gameObject.GetComponent<PlayerController> ();
 
+		// Swap position with other player if the other player is grounded 
 		if (other.gameObject.tag == "Player" && grounded) {
 			playerRigidBody.AddForce (new Vector2(otherInfo.xInput * -1 *impulseRate, otherInfo.yInput * -1 * impulseRate), ForceMode2D.Impulse);
 			playGruntSound();
 		}
+
+		// Bounce off other player after first hit
 		else if (other.gameObject.tag == "Player" && !grounded && !otherInfo.grounded && firstHit) {
 			playerRigidBody.AddForce (new Vector2(xInput * -2 *impulseRate, yInput * -2 * impulseRate), ForceMode2D.Impulse);
 			Debug.Log("Hey Player: " + myInfo.Data.PlayerNum);
 			playGruntSound();
 		}
+
+		// Bounce off other player before first hit
 		else if (other.gameObject.tag == "Player" && !grounded && !otherInfo.grounded && !firstHit) {
 			playerRigidBody.AddForce (new Vector2(otherInfo.xInput * -2 *impulseRate, otherInfo.yInput * -2 * impulseRate), ForceMode2D.Impulse);
 			Debug.Log("Hey Player: " + myInfo.Data.PlayerNum);
 			playGruntSound();
 		}
 
+		// Take ball from collided player
 		if (other.gameObject.tag == "Player" && otherInfo.hasBall) {
 			BallGrab(otherInfo.theBall);
 			otherInfo.BallLost();
 			playGruntSound();
 		}
 
+		// Grab the ball
 		if (other.gameObject.tag == "Ball") {
 
 			//theBall.transform.parent = this.gameObject.transform.FindChild("Player Sprite").transform;
@@ -184,6 +191,7 @@ public class PlayerController : MonoBehaviour {
 
 		theBall = ball;
 		theBall.GetComponent<Script_GameBall> ().StopBall();
+		//theBall.GetComponent<Rigidbody2D> ().isKinematic = true;
 
 		Debug.Log ("Catching the ball!");
 		theBall.transform.parent = this.gameObject.transform;
