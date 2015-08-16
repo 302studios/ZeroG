@@ -39,14 +39,13 @@ public class GoalClass : MonoBehaviour {
 			}
 		} 
 		else {
-			playerWhoScored.gameObject.GetComponent<PlayerClass> ().Data.PlayerScore--;
 			if (playerWhoScored.gameObject.GetComponent<PlayerClass> ().Data.PlayerNum < 2){
-				ControlCenter.Instance.Team1Score--;
-				Debug.Log("Team 1 Score: " + ControlCenter.Instance.Team1Score);
+				ControlCenter.Instance.Team2Score++;
+				Debug.Log("Team 2 Score: " + ControlCenter.Instance.Team2Score);
 			}
 			else{
-				ControlCenter.Instance.Team2Score--;
-				Debug.Log("Team 2 Score: " + ControlCenter.Instance.Team2Score);
+				ControlCenter.Instance.Team1Score++;
+				Debug.Log("Team 1 Score: " + ControlCenter.Instance.Team1Score);
 			}
 		}
 	}

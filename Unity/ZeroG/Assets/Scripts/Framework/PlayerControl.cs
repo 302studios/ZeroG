@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.Framework
-{
     class PlayerControl:Singleton<PlayerControl>
     {
         private List<PlayerClass> _players = new List<PlayerClass>();
@@ -162,4 +160,3 @@ namespace Assets.Scripts.Framework
             throw new NotImplementedException();
         }
     }
-}
