@@ -9,7 +9,7 @@ public class TimerClass : MonoBehaviour {
 	public enum Country {Japan, USA, China, Russia};
 	private float timeLeft;
 	private int minsPerSec = 60 ;
-	private int minsPerMatch = 183;
+	private int secsPerMatch = 183;
 	private int mins;
 	private int seconds;
 	private int countDownNum;
@@ -31,7 +31,7 @@ public class TimerClass : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timePassed = Time.timeSinceLevelLoad;
-		timeLeft = minsPerMatch - (int)timePassed;
+		timeLeft = secsPerMatch - (int)timePassed;
 		if (timeLeft > 0) {
 			if (timePassed > 3f){
 				CountDown.active = false;
