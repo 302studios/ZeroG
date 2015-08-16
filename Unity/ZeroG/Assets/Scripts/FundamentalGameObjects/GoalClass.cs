@@ -27,6 +27,7 @@ public class GoalClass : MonoBehaviour {
 	}
 
 	public void PointScored(GameObject playerWhoScored){
+		GameObject.Find ("Main Camera").GetComponent<CameraShake> ().shake = 1f; 
 		PlayerData.Country playerCountry = playerWhoScored.gameObject.GetComponent<PlayerClass> ().Data.PlayerCountry;
 		if (country != playerCountry) {
 			playerWhoScored.gameObject.GetComponent<PlayerClass> ().Data.PlayerScore++;
