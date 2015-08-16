@@ -16,7 +16,7 @@ class TeamSelectButton:MonoBehaviour
     }
 
 
-    public void OnClick(float XAxis, float YAxis, bool MouseDown)
+    public void OnClick(float XAxis, float YAxis, bool MouseDown, bool MouseUp)
     {
 
         int index;
